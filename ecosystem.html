@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        // Proteksi: Cek akses sebelum halaman dimuat
+        if (sessionStorage.getItem("aeterna_auth") !== "valid") {
+            window.location.href = "dashboard.html";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SÀLT+ VS Core | AETERNA OS</title>
+    <style>
+        body { 
+            background: #000; color: #00ffff; 
+            font-family: 'Courier New', monospace;
+            text-align: center; padding-top: 100px;
+        }
+        .system-frame { 
+            border: 1px solid #00ffff; padding: 30px; 
+            display: inline-block; box-shadow: 0 0 15px #00ffff;
+        }
+        .status { color: #0f0; text-shadow: 0 0 5px #0f0; }
+    </style>
+</head>
+<body>
+    <div class="system-frame">
+        <h1>SÀLT+ VIRTUAL SMARTPHONE</h1>
+        <p class="status">[ SYSTEM INITIALIZED ]</p>
+        <hr border="1" color="#00ffff">
+        <p>Welcome, Admin MaisonLinore</p>
+        <p>AETERNA OS Ecosystem is Running...</p>
+    </div>
+</body>
+</html>
