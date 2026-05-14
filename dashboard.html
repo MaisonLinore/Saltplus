@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SÀLT+ AETERNA OS | Access Portal</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            background: #000 url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+        }
+        .overlay-gate {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 40px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+        }
+        h1 { color: #fff; letter-spacing: 4px; margin-bottom: 5px; }
+        h2 { color: #00ffff; font-size: 1.2rem; margin-top: 0; margin-bottom: 30px; }
+        input {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            border-radius: 8px; border: 1px solid #00ffff;
+            background: rgba(255, 255, 255, 0.1); color: #fff;
+            text-align: center; box-sizing: border-box;
+        }
+        .btn-init {
+            width: 100%; padding: 12px; border-radius: 8px; border: none;
+            background: #00ffff; color: #000; font-weight: bold;
+            cursor: pointer; text-transform: uppercase; transition: 0.3s;
+        }
+        .btn-init:hover { background: #fff; box-shadow: 0 0 20px #fff; }
+        #msg { margin-top: 15px; color: #00ffff; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="overlay-gate">
+        <h1>SÀLT+</h1>
+        <h2>AETERNA OS</h2>
+        <div id="step1">
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <button class="btn-init" onclick="sendToken()">GET TOKEN</button>
+        </div>
+        <div id="step2" style="display:none;">
+            <input type="text" id="token" placeholder="8-Digit Token" maxlength="8">
+            <button class="btn-init" onclick="verifyAccess()">INITIALIZE</button>
+        </div>
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        function sendToken() {
+            const email = document.getElementById('email').value;
+            if(email.includes('@')) {
+                document.getElementById('msg').innerText = "Sending 8-digit token to " + email + "...";
+                // Integrasi GCP Identity Platform/Gmail API di sini
+                setTimeout(() => {
+                    document.getElementById('step1').style.display = 'none';
+                    document.getElementById('step2').style.display = 'block';
+                    document.getElementById('msg').innerText = "Check your inbox.";
+                }, 2000);
+            }
+        }
+
+        function verifyAccess() {
+            const token = document.getElementById('token').value;
+            if(token.length === 8) {
+                sessionStorage.setItem("aeterna_auth", "valid");
+                window.location.href = "index.html";
+            } else {
+                alert("Invalid Token!");
+            }
+        }
+
+        // Disable Inspect Element
+        document.onkeydown = (e) => { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
+        document.oncontextmenu = (e) => e.preventDefault();
+    </script>
+</body>
+</html>
