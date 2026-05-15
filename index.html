@@ -1,109 +1,126 @@
+
+
+sudo cat << 'EOF' > /var/www/html/index.php
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SÀLT+ VS v1</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;600;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SÀLT+ AETERNA OS</title>
     <style>
-        :root { --neon: #00f3ff; --bg: #020202; }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg); color: #fff; font-family: 'Rajdhani', sans-serif; overflow: hidden; height: 100vh; width: 100vw; }
+        body { 
+            background: #000; 
+            color: #fff; 
+            font-family: sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 320px;
+        }
         
-        .bg-container { position: fixed; width: 100%; height: 100%; z-index: -1; }
-        .grid { width: 100%; height: 100%; background-image: linear-gradient(rgba(0,243,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,243,255,0.05) 1px, transparent 1px); background-size: 40px 40px; }
+        /* Gaya Poster Baru: Tanpa Kotas/Kanvas, Langsung Menempel Bersih */
+        .poster-img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            display: block;
+        }
         
-        .main-wrapper { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
-        .logo-section { text-align: center; margin-bottom: 40px; text-transform: uppercase; }
-        .v-label { font-size: 10px; letter-spacing: 2px; color: var(--neon); margin-top: 5px; opacity: 0.8; }
-        .logo-text { font-size: 42px; font-weight: 900; letter-spacing: 6px; text-shadow: 0 0 20px var(--neon); color: #fff; }
-        .slogan { font-size: 8px; color: var(--neon); opacity: 0.6; margin-bottom: 15px; letter-spacing: 3px; }
-
-        /* PHONE MOCKUP / PIN VIEW */
-        .device-frame { width: 280px; border: 1px solid rgba(0,243,255,0.3); border-radius: 35px; background: rgba(0,0,0,0.8); padding: 50px 20px; display: flex; flex-direction: column; align-items: center; position: relative; box-shadow: 0 0 30px rgba(0,243,255,0.1); }
-        .notch { width: 100px; height: 20px; background: #000; border-radius: 0 0 12px 12px; position: absolute; top: 0; }
-        
-        .price-tag { font-size: 55px; font-weight: 900; margin-top: 10px; color: #fff; }
-        .per-month { font-size: 12px; color: #444; margin-bottom: 30px; letter-spacing: 2px; }
-        .icon-circle { width: 100px; height: 100px; border: 1px dashed var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 40px; box-shadow: inset 0 0 15px rgba(0,243,255,0.1); }
-
-        .pin-button { width: 100%; border: 1px solid var(--neon); background: transparent; color: var(--neon); padding: 15px; border-radius: 12px; font-family: 'Rajdhani'; font-weight: 600; font-size: 16px; letter-spacing: 8px; cursor: pointer; transition: 0.3s; }
-        .pin-button:active { background: var(--neon); color: #000; }
-
-        /* APP GRID VIEW */
-        #app-dashboard { display: none; width: 100%; max-width: 400px; animation: fadeIn 0.5s ease; }
-        .app-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-top: 20px; }
-        .app-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
-        .app-icon { width: 50px; height: 50px; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .app-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .app-label { font-size: 8px; color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-
-        .google-dock { margin-top: 30px; border: 1px solid var(--neon); border-radius: 25px; padding: 15px; display: flex; justify-content: space-around; background: rgba(0,243,255,0.02); }
-        .deactivate-btn { margin-top: 40px; border: 1px solid #ff0055; color: #ff0055; background: transparent; width: 100%; padding: 12px; border-radius: 30px; font-family: 'Rajdhani'; font-size: 11px; letter-spacing: 3px; font-weight: 600; cursor: pointer; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .gate-container { 
+            border: 1px solid rgba(0,243,255,0.5); 
+            border-radius: 20px; 
+            padding: 35px 20px; 
+            text-align: center; 
+            background: #000; 
+            width: 100%; 
+            box-shadow: 0 0 20px rgba(0,243,255,0.4); 
+            box-sizing: border-box;
+        }
+        .brand-top { 
+            color: #fff; 
+            font-size: 2.2rem; 
+            letter-spacing: 12px; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+            text-shadow: 0 0 15px rgba(255,255,255,0.6); 
+        }
+        h1 { 
+            color: #00f3ff; 
+            font-size: 1.8rem; 
+            text-shadow: 0 0 10px #00f3ff; 
+            margin: 0 0 25px 0; 
+            font-weight: bold; 
+            line-height: 1.1; 
+        }
+        .input-key { 
+            width: 100%; 
+            padding: 14px; 
+            margin-bottom: 15px; 
+            background: #111; 
+            border: 1px solid #333; 
+            border-radius: 10px; 
+            color: #fff; 
+            text-align: center; 
+            outline: none; 
+            font-size: 1.1rem; 
+            letter-spacing: 4px; 
+            box-sizing: border-box;
+        }
+        .btn-init { 
+            width: 100%; 
+            padding: 14px; 
+            background: #00f3ff; 
+            border: none; 
+            border-radius: 10px; 
+            color: #000; 
+            font-weight: bold; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-container"><div class="grid"></div></div>
+    <div class="wrapper">
+        <!-- Poster Tanpa Kotas Frame -->
+        <img src="ibb.co" alt="AETERNA OS" class="poster-img" onerror="this.style.display='none'">
 
-    <div class="main-wrapper">
-        <div class="logo-section" id="header-area">
-            <div class="v-label">VIRTUAL SMARTPHONE v1</div>
-            <div class="logo-text">SÀLT+</div>
-            <div class="slogan">FAST+ &nbsp; — &nbsp; CHEAP &nbsp; — &nbsp; ENERGY</div>
-        </div>
-
-        <div id="pin-screen">
-            <div class="device-frame">
-                <div class="notch"></div>
-                <div class="price-tag">$3</div>
-                <div class="per-month">/MONTH</div>
-                <div class="icon-circle">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="M10 14l2 2 4-4"></path></svg>
-                </div>
-                <button class="pin-button" onclick="unlockSystem()">PIN</button>
-            </div>
-        </div>
-
-        <div id="app-dashboard">
-            <div class="app-grid">
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></div><div class="app-label">Linkedin</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png"></div><div class="app-label">FB</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"></div><div class="app-label">Youtube</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></div><div class="app-label">IG</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></div><div class="app-label">WA</div></div>
-                
-                <div class="app-item"><div class="app-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Gemini_language_model_logo.svg/1024px-Gemini_language_model_logo.svg.png"></div><div class="app-label">Gemini</div></div>
-                <div class="app-item"><div class="app-icon" style="background:#000;"><img src="https://abs.twimg.com/responsive-web/client-web/icon-ios.b1fd6465.png"></div><div class="app-label">X</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://deepseek.com/favicon.png"></div><div class="app-label">Deepseek</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png"></div><div class="app-label">Telegram</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://static.cdnlogo.com/logos/c/38/chatgpt.svg"></div><div class="app-label">ChatGPT</div></div>
-            </div>
-
-            <div class="google-dock">
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png"></div><div class="app-label">Gmail</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"></div><div class="app-label">Photos</div></div>
-                <div class="app-item"><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/281/281764.png"></div><div class="app-label">Search</div></div>
-            </div>
-
-            <button class="deactivate-btn" onclick="location.reload()">DEACTIVATE SYSTEM</button>
+        <!-- Form Login Utama -->
+        <div class="gate-container">
+            <div class="brand-top">SÀLT+</div>
+            <h1>AETERNA<br>OS</h1>
+            <input type="text" id="pincode" class="input-key" placeholder="8-DIGIT PIN" maxlength="8">
+            <button class="btn-init" onclick="openEco()">INITIALIZE</button>
         </div>
     </div>
 
     <script>
-        function unlockSystem() {
-            let pin = prompt("ENTER ACCESS PIN:");
-            if (pin === "1234") { // Sesuai PIN yang Abang setting
-                document.getElementById('pin-screen').style.display = 'none';
-                document.getElementById('header-area').querySelector('.logo-text').innerHTML = "SÀLT+ ECOSYSTEM";
-                document.getElementById('app-dashboard').style.display = 'block';
-            } else {
-                alert("ACCESS DENIED");
+        function openEco() {
+            var pin = document.getElementById('pincode').value.trim();
+            
+            // Validasi kecocokan PIN
+            if(pin === 'free7d' || pin.length === 8) {
+                // Alur Baru: Begitu sukses, langsung dilempar ke halaman Salt+ VS
+                window.location.href = "https://aeternaemplus.com/salt/index.html";
+            } else { 
+                alert('Access Denied: Invalid Token'); 
             }
         }
     </script>
+</body>
+</html>
+EOF
 </body>
 </html>
 
