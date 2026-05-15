@@ -1,5 +1,4 @@
 Salt+ VS
 
 
-(IMG_20260513_222546.jpg)
-
+(IMG_Screenshot_2026-05-14-19-17-08-312_com.miui.gallery.jpg)
