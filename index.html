@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SALT+ AETERNA OS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>SALT+ AETERNA OS | Smartphone Edition</title>
     <style>
         * {
             margin: 0;
@@ -12,158 +12,245 @@
         }
 
         body {
-            /* Ganti URL gambar di bawah dengan gambar background milikmu */
-            background-image: url('https://source.unsplash.com/random/1080x1920?dark,tech');
-            background-size: cover;          /* Memastikan gambar menutupi seluruh layar */
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;    /* Efek parallax sederhana */
+            background: linear-gradient(145deg, #1a0b2e 0%, #2a1a4a 100%);
             font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
-            color: #fff;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            backdrop-filter: brightness(0.7); /* Menggelapkan background agar teks lebih terbaca */
+            justify-content: center;
+            padding: 20px;
         }
 
-        /* Overlay opsional untuk meningkatkan keterbacaan teks (bisa dihapus jika tidak perlu) */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* Container utama - gaya smartphone */
+        .phone-card {
+            max-width: 400px;
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 0;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .wrapper {
-            position: relative;
-            z-index: 2;
+        /* tata letak dua kolom (kiri teks, kanan gambar) - di hp jadi stack */
+        .dual-layout {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        /* sisi kiri: teks dan tombol */
+        .left-content {
+            flex: 1.2;
+            padding: 32px 24px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 400px;   /* Ukuran ideal seperti layar HP */
-            padding: 24px 20px;
-            background: rgba(0, 0, 0, 0.6);  /* Kardus transparan gelap */
-            border-radius: 32px;
-            backdrop-filter: blur(8px);
-            text-align: center;
-            box-shadow: 0 25px 40px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
+            gap: 16px;
         }
 
-        /* Gaya untuk poster/image tambahan jika ada di dalam konten */
-        .poster-img {
+        /* sisi kanan: gambar */
+        .right-image {
+            flex: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 20px 24px 0;
+        }
+
+        .right-image img {
             width: 100%;
-            max-width: 280px;
-            border-radius: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border: 2px solid rgba(255,255,255,0.3);
+            max-width: 160px;
+            height: auto;
+            border-radius: 32px;
+            object-fit: cover;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            transition: transform 0.2s;
+        }
+
+        /* efek hover ringan */
+        .right-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* teks & warna-warni */
+        .brand {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #ffd966;
+            text-transform: uppercase;
+            font-weight: 600;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            width: fit-content;
+            padding: 4px 12px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
         }
 
         h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-size: 2.1rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #FFFFFF, #ffb347, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .sub {
             font-size: 0.9rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            color: #e0d6ff;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-left: 3px solid #ffb347;
+            padding-left: 12px;
         }
 
-        .description {
+        .desc {
             font-size: 0.85rem;
-            line-height: 1.5;
-            margin-bottom: 28px;
+            line-height: 1.45;
+            color: #f0eef7;
+            opacity: 0.9;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 8px 0;
+        }
+
+        .feature-list li {
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #f3e9ff;
+        }
+
+        .feature-list li::before {
+            content: "✦";
+            color: #ffb347;
+            font-weight: bold;
+        }
+
+        .init-text {
+            font-family: monospace;
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.4);
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 60px;
+            letter-spacing: 1px;
+            color: #aaffdd;
+            border: 1px solid #aaffdd80;
+            backdrop-filter: blur(4px);
         }
 
         .btn {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.4);
-            padding: 12px 24px;
-            border-radius: 40px;
+            background: linear-gradient(95deg, #ff8c42, #ff3b6f);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 0.9rem;
             color: white;
-            font-weight: 600;
+            text-align: center;
             text-decoration: none;
-            transition: 0.2s;
             display: inline-block;
+            width: fit-content;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            margin-top: 8px;
         }
 
         .btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px rgba(0,0,0,0.3);
         }
 
         footer {
-            margin-top: 32px;
-            font-size: 0.7rem;
-            opacity: 0.7;
+            font-size: 0.65rem;
+            text-align: center;
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ccc;
+            background: rgba(0,0,0,0.2);
         }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <!-- Kamu bisa ganti poster-img dengan gambar lain, atau hapus jika tidak perlu -->
-        <img class="poster-img" src="https://via.placeholder.com/300x400?text=SALT+AETERNA+OS" alt="Poster SALT+ AETERNA OS" 
-             onerror="this.src='https://placehold.co/300x400/1a1a2e/white?text=SALT+OS'">
-        
-        <h1>SALT+ AETERNA OS</h1>
-        <div class="sub">✦ Next-Gen Interface ✦</div>
-        <div class="description">
-            Pengalaman baru yang abadi. Stabilitas, kecepatan, dan desain masa depan. 
-            <br>Siap untuk evolusi digital Anda.
-        </div>
-        <a href="#" class="btn">Jelajahi Sekarang →</a>
-        <footer>© 2026 SALT+ AETERNA — Immortal System</footer>
-    </div>
-</body>
-</html>            cursor: pointer; 
-            text-transform: uppercase; 
-            box-sizing: border-box;
-        }
-    </style>
-</head>
-<body>
 
-    <div class="wrapper">
-        <!-- Poster Tanpa Kotas Frame -->
-        <img src="ibb.co" alt="AETERNA OS" class="poster-img" onerror="this.style.display='none'">
-
-        <!-- Form Login Utama -->
-        <div class="gate-container">
-            <div class="brand-top">SÀLT+</div>
-            <h1>AETERNA<br>OS</h1>
-            <input type="text" id="pincode" class="input-key" placeholder="8-DIGIT PIN" maxlength="8">
-            <button class="btn-init" onclick="openEco()">INITIALIZE</button>
-        </div>
-    </div>
-
-    <script>
-        function openEco() {
-            var pin = document.getElementById('pincode').value.trim();
-            
-            // Validasi kecocokan PIN
-            if(pin === 'free7d' || pin.length === 8) {
-                // Alur Baru: Begitu sukses, langsung dilempar ke halaman Salt+ VS
-                window.location.href = "https://aeternaemplus.com/salt/index.html";
-            } else { 
-                alert('Access Denied: Invalid Token'); 
+        /* Responsive: untuk layar sempit (smartphone), gambar di bawah teks */
+        @media (max-width: 550px) {
+            .dual-layout {
+                flex-direction: column;
+            }
+            .right-image {
+                padding: 0 24px 24px 24px;
+                justify-content: center;
+            }
+            .right-image img {
+                max-width: 180px;
+                border-radius: 28px;
+            }
+            .left-content {
+                padding: 32px 24px 16px;
+            }
+            h1 {
+                font-size: 1.9rem;
             }
         }
-    </script>
+
+        /* animasi kecil */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .left-content, .right-image {
+            animation: fadeUp 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-card">
+        <div class="dual-layout">
+            <!-- Sisi KIRI: teks dan konten (TIDAK diganti dengan gambar) -->
+            <div class="left-content">
+                <span class="brand">⚡ SALT+ OS ⚡</span>
+                <h1>AETERNA<br>IMMORTAL</h1>
+                <div class="sub">Next‑Gen Interface · Tanpa Batas</div>
+                <div class="desc">
+                    Pengalaman baru yang abadi. Stabilitas, kecepatan, dan desain masa depan.<br>
+                    Siap untuk evolusi digital Anda.
+                </div>
+                <ul class="feature-list">
+                    <li>Zero Lag Intelligence</li>
+                    <li>Quantum UI Fluid</li>
+                    <li>Eternal Security Core</li>
+                </ul>
+                <div class="init-text">▶ INITIALIZE SYSTEM</div>
+                <a href="#" class="btn">Jelajahi Sekarang →</a>
+            </div>
+
+            <!-- Sisi KANAN: gambar (GANTI dengan file screenshot Anda) -->
+            <div class="right-image">
+                <!-- *** GANTI src DENGAN FILE GAMBAR ANDA *** -->
+                <img src="Screenshot_2026-05-14-19-17-08-312_com.miui.gallery.jpg" 
+                     alt="Preview AETERNA OS" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/400x600/2d1b4e/ffb347?text=SALT+AETERNA';">
+            </div>
+        </div>
+        <footer>
+            © 2026 SALT+ AETERNA — Immortal Experience | Smartphone Edition
+        </footer>
+    </div>
 </body>
-
-
-
-
+</html>
